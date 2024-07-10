@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: grpc-client-deployment
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: grpc-client
+  template:
+    metadata:
+      labels:
+        app: grpc-client
+    spec:
+      containers:
+      - name: my-grpc-client-container
+        image: moctader/my-grpc-client:v2
+        env:
+        - name: GRPC_SERVER
+          value: grpc-server-service
